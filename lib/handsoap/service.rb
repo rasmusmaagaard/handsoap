@@ -245,6 +245,8 @@ module Handsoap
       end
       if Handsoap.http_driver == :curb
         http_client = Curl::Easy.new(self.class.uri)
+        warn 'Warning: Centic hotfix - disables ssl verify'
+        http_client.ssl_verify_peer = false
         http_client.headers = headers
         http_client.http_post body
         debug do |logger|
